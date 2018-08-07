@@ -1,37 +1,19 @@
+// This sets things up so that if there's a typo, i.e 'INCEMENT,' it throws an error.
+import * as actionTypes from '../actions';
+
 const initialState = {
-  counter: 0,
   results: []
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'INCREMENT':
-      //this is one way to update state, but is a long way of going about it.
-      const newState = Object.assign({}, state);
-      newState.counter = state.counter + 1
-      return newState;
-    case 'DECREMENT':
-      return {
-        ...state,
-        counter: state.counter - 1
-      };
-    case 'ADD':
-      return {
-        ...state,
-        counter: state.counter + action.value
-      };
-    case 'SUBTRACT':
-      return {
-        ...state,
-        counter: state.counter - action.value
-      };
-    case 'STORE_RESULT':
+    case actionTypes.STORE_RESULT:
     //concat doesn't manipulate the original array, it returns a new one. This updates the state immutably.
       return {
         ...state,
-        results: state.results.concat({id: new Date(), value: state.counter})
+        results: state.results.concat({id: new Date(), value: action.result})
       };
-    case 'DELETE_RESULT':
+    case actionTypes.DELETE_RESULT:
       // const newArray = [...state.results];
       // newArray.splice(id, 1)
       // This returns a new array with all items where the id of the item doesn't match the one that's passed in.
