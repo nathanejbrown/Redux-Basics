@@ -1,5 +1,5 @@
 // This sets things up so that if there's a typo, i.e 'INCEMENT,' it throws an error.
-import * as actionTypes from '../actions/actions';
+import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   results: []
