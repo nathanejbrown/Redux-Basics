@@ -31,10 +31,19 @@ export const subtract = (value) => {
   }
 };
 
-export const storeResult = (result) => {
+export const saveResult = (result) => {
   return {
     type: STORE_RESULT,
     result: result
+  }
+}
+
+// This works because of the Thunk middleware, which allows you to run asynchronous code. 
+export const storeResult = (result) => {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(saveResult(result))
+    }, 2000);
   }
 }
 
