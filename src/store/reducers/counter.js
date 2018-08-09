@@ -1,5 +1,6 @@
 // This sets things up so that if there's a typo, i.e 'INCEMENT,' it throws an error.
 import * as actionTypes from '../actions/actionTypes';
+import { updateObject } from '../utility';
 
 const initialState = {
   counter: 0
@@ -8,30 +9,15 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.INCREMENT:
-      //this is one way to update state, but is a long way of going about it.
-      const newState = Object.assign({}, state);
-      newState.counter = state.counter + 1
-      return newState;
+      return updateObject(state, {counter: state.counter + 1});
     case actionTypes.DECREMENT:
-      return {
-        ...state,
-        counter: state.counter - 1
-      };
+      return updateObject(state, {counter: state.counter - 1});
     case actionTypes.ADD:
-      return {
-        ...state,
-        counter: state.counter + action.value
-      };
+      return updateObject(state, {counter: state.counter + action.value});
     case actionTypes.SUBTRACT:
-      return {
-        ...state,
-        counter: state.counter - action.value
-      };
-    default:
-      return state;
+      return updateObject(state, {counter: state.counter - action.value});
   }
-
-  // return state;
+  return state;
 }
 
 export default reducer;

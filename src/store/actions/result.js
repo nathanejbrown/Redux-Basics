@@ -9,8 +9,10 @@ export const saveResult = (result) => {
 
 // This works because of the Thunk middleware, which allows you to run asynchronous code.
 export const storeResult = (result) => {
-  return dispatch => {
+  return (dispatch, getState) => {
     setTimeout(() => {
+      // const oldCounter = getState().counter;
+      // console.log(oldCounter);
       dispatch(saveResult(result))
     }, 2000);
   }
